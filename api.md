@@ -1,5 +1,6 @@
 ### 目录
   * [购物车](#加入购物车)
+  * [商品详情](#1.显示商品详情)
 
 
 #### 1.加入购物车
@@ -109,5 +110,75 @@ Status: 403  forbidden
 {
   "id": "forbidden",
   "message": "Please delete your car!"
+}
+```
+#### 1.显示商品详情
+会显示商品的名称，所有的规格详情，以及商品详细介绍等
+
+    Get /product/:id
+    
+**Response**
+
+    Status: 200 OK
+    
+```json
+{
+  "id": 8,
+  "name": "车1",
+  "category_id": 1,
+  "imglist": [
+    {
+      "img": "s1.jpg",
+      "main_img": true
+    },
+    {
+      "img": "s2.jpg",
+      "main_img": false
+    }
+  ],
+  "property": [
+    {
+      "name": "品牌",
+      "value": "奔驰"
+    },
+    {
+      "name": "车重",
+      "value": "2T"
+    },
+    {
+      "name": "车轮",
+      "value": "中国制造"
+    }
+  ],
+  "detail": [
+    {
+      "text": "车身照",
+      "img": "s5.jpg"
+    },
+    {
+      "text": "车头照",
+      "img": "s6.jpg"
+    }
+  ],
+  "skucate": [
+    {
+      "name1": "颜色",
+      "value1": "黄色",
+      "name2": "车型",
+      "value2": "M11",
+      "price": 4000.0,
+      "oldprice": 5000.0,
+      "quantity": 50
+    },
+    {
+      "name1": "颜色",
+      "value1": "红色",
+      "name2": "车型",
+      "value2": "M22",
+      "price": 3000.0,
+      "oldprice": 4000.0,
+      "quantity": 30
+    }
+  ]
 }
 ```
