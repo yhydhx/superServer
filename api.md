@@ -1,3 +1,7 @@
+### 目录
+  * [购物车](#加入购物车)
+
+
 #### 加入购物车
 选定规格，确定商品数量。
 
@@ -7,10 +11,10 @@
 
 | Name      |     Type |   Description   |
 | :-------- | --------:| :------: |
-| product_id    |   String | 产品的ID  |
-| value1    |   String |  规格一的属性值  |
-| value2    |   String |  规格二的属性值  |
-| quantity    |   String |  加入购物车的商品数量  |
+| product_id    |   number | 产品的ID  |
+| value1    |   string |  规格一的属性值  |
+| value2    |   string |  规格二的属性值  |
+| quantity    |   number |  加入购物车的商品数量  |
 
 #### 显示购物车
 
@@ -18,9 +22,10 @@
     
 **Parameters**
     no
+    
 **Response**
 ```
-    HTTP/1.1 200 OK 
+HTTP/1.1 200 OK 
 ```
 ```json
     [
@@ -53,4 +58,50 @@
     }
   }
 ]
+```
+#### 修改购物车商品数量
+只能修改自己购物车的商品
+```
+Put /Cars/:id
+```
+**Input**
+
+| Name     |     Type |   Description   |
+| :-------- | --------:| :------: |
+| quantity    |   number |  修改后的商品数量  |
+
+**Response**
+修改成功
+```
+Status: 200 OK
+```
+修改失败
+```
+Status: 403  forbidden
+```
+```json
+{
+  "id": "forbidden",
+  "message": "Please modify your car!"
+}
+```
+#### 删除购物车的商品
+只能删除自己购物车的商品
+
+    Delele /Cars/:id
+
+**Response**
+删除成功
+
+    Status: 200 OK
+    
+删除失败    
+```
+Status: 403  forbidden
+```
+```json
+{
+  "id": "forbidden",
+  "message": "Please delete your car!"
+}
 ```
