@@ -1,6 +1,6 @@
 ### 目录
-  * [购物车](#Shopcar)
-  * [商品详情](#Product)
+  * [购物车](#shopcar)
+  * [商品详情](#product)
 
 ###Shopcar
 #### 1.加入购物车
