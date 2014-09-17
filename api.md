@@ -2,7 +2,7 @@
   * [购物车](#加入购物车)
 
 
-#### 加入购物车
+#### 1.加入购物车
 选定规格，确定商品数量。
 
     Post /cars
@@ -16,11 +16,13 @@
 | value2    |   string |  规格二的属性值  |
 | quantity    |   number |  加入购物车的商品数量  |
 
-#### 显示购物车
+
+#### 2.显示购物车
 
     Get /showcar
     
 **Parameters**
+
     no
     
 **Response**
@@ -59,7 +61,8 @@ HTTP/1.1 200 OK
   }
 ]
 ```
-#### 修改购物车商品数量
+
+#### 3.修改购物车商品数量
 只能修改自己购物车的商品
 ```
 Put /Cars/:id
@@ -71,6 +74,7 @@ Put /Cars/:id
 | quantity    |   number |  修改后的商品数量  |
 
 **Response**
+
 修改成功
 ```
 Status: 200 OK
@@ -85,12 +89,14 @@ Status: 403  forbidden
   "message": "Please modify your car!"
 }
 ```
-#### 删除购物车的商品
+
+#### 4.删除购物车的商品
 只能删除自己购物车的商品
 
     Delele /Cars/:id
 
 **Response**
+
 删除成功
 
     Status: 200 OK
