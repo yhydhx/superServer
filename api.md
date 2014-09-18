@@ -1,6 +1,8 @@
 ### 目录
   * [购物车](#shopcar)
   * [商品详情](#product)
+  * [类别商品](#category)
+  * [搜索](#search)
 
 ###Shopcar
 #### 1.加入购物车
@@ -116,7 +118,7 @@ Status: 403  forbidden
 #### 1.显示商品详情
 会显示商品的名称，所有的规格详情，以及商品详细介绍等
 
-    Get /product/:id
+    Get /products/:id
     
 **Response**
 
@@ -182,4 +184,72 @@ Status: 403  forbidden
     }
   ]
 }
+```
+### Catogory
+#### 所属列别的商品
+每次发送10个商品
+
+    Get /Categories/:id
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| page    |   number |  每页10个 从1开始  |
+**Response**
+
+    Status: 200 OK
+
+```json
+[
+  {
+    "id": 8,
+    "name": "车1",
+    "category_id": 1,
+    "picture_url": "/assets/s1.jpg",
+    "price": 3000.0,
+    "quantity": 80
+  },
+  {
+    "id": 16,
+    "name": "车2",
+    "category_id": 1,
+    "picture_url": "/assets/s3.jpg",
+    "price": 4400.0,
+    "quantity": 66
+  }
+]
+```
+### Search
+#### 搜索
+输入商品名称的开头,返回匹配到的商品名称及id
+
+    Get /search
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| name    |   string |  中文可能需要用js进行处理,待测试  |
+**Response**
+e.g: name=车
+```json
+[
+  {
+    "id": 8,
+    "name": "车1"
+  },
+  {
+    "id": 9,
+    "name": "车2"
+  },
+  {
+    "id": 16,
+    "name": "车2"
+  },
+  {
+    "id": 10,
+    "name": "车3"
+  }
+]
 ```
