@@ -1,4 +1,5 @@
 ### 目录
+  * [店铺主页](#store)
   * [购物车](#shopcar)
   * [商品详情](#product)
   * [类别商品](#category)
@@ -186,7 +187,7 @@ Status: 403  forbidden
 }
 ```
 ### Catogory
-#### 所属列别的商品
+#### 1.所属列别的商品
 每次发送10个商品
 
     Get /Categories/:id
@@ -221,7 +222,7 @@ Status: 403  forbidden
 ]
 ```
 ### Search
-#### 搜索
+#### 1.搜索
 输入商品名称的开头,返回匹配到的商品名称及id
 
     Get /search
@@ -231,7 +232,9 @@ Status: 403  forbidden
 | Name      |     Type |   Description   |
 | :-------- | --------:| :------: |
 | name    |   string |  中文可能需要用js进行处理,待测试  |
+
 **Response**
+
 e.g: name=车
 ```json
 [
@@ -252,4 +255,86 @@ e.g: name=车
     "name": "车3"
   }
 ]
+```
+### Store
+#### 店铺主页
+会返回店铺的轮播图片，店铺信息，及种类信息
+
+    Get /
+
+**Response**
+
+    Status 200 OK
+    
+```json
+{
+  "id": 1,
+  "name": "专属",
+  "background": "背景.jpg",
+  "slogan": "这是一家小店铺的标语。",
+  "carousel": [
+    {
+      "picture": "/assests/s1.jpg"
+    },
+    {
+      "picture": "/assests/s3.jpg"
+    },
+    {
+      "picture": "/assests/s4.jpg"
+    },
+    {
+      "picture": "/assests/s5.jpg"
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "name": "水果",
+      "product": [
+        {
+          "product_id": 8,
+          "picture": "/assets/s1.jpg"
+        },
+        {
+          "product_id": 16,
+          "picture": "/assets/s3.jpg"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "法拉利",
+      "product": [
+        {
+          "product_id": 9,
+          "picture": "/assets/s2.jpg"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "奔驰",
+      "product": [
+        {
+          "product_id": 10,
+          "picture": "/assets/s3.jpg"
+        },
+        {
+          "product_id": 11,
+          "picture": "/assets/s4.jpg"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "宝马",
+      "product": [
+        {
+          "product_id": 14,
+          "picture": "/assets/s7.jpg"
+        }
+      ]
+    }
+  ]
+}
 ```
