@@ -5,7 +5,8 @@
   * [商品详情](#product)
   * [类别商品](#category)
   * [搜索](#search)
-
+  * [用户](#user)
+ 
 ###Address
   http://shop-api.herokuapp.com
 
@@ -19,19 +20,31 @@
 
 | Name      |     Type |   Description   |
 | :-------- | --------:| :------: |
+| nosign_id    |  string | 没有登录的标记id,nosign_id与remember_token需要一个   |
+| remember_token    |   string | 登录之后获得的token,nosign_id与remember_token需要一个   |
 | product_id    |   number | 产品的ID  |
 | value1    |   string |  规格一的属性值  |
 | value2    |   string |  规格二的属性值  |
 | quantity    |   number |  加入购物车的商品数量  |
 
+**Response**
+```json
+{"code":"success"}
+```
+
 
 #### 2.显示购物车
 
-    Get /showcar
+    Get /cars
     
 **Parameters**
 
-    no
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| nosign_id    |  string | 没有登录的标记id,nosign_id与remember_token需要一个   |
+| remember_token    |   string | 登录之后获得的token,nosign_id与remember_token需要一个   |
+
+
     
 **Response**
 ```
@@ -77,15 +90,20 @@ Put /Cars/:id
 ```
 **Input**
 
-| Name     |     Type |   Description   |
+| Name      |     Type |   Description   |
 | :-------- | --------:| :------: |
+| nosign_id    |  string | 没有登录的标记id,nosign_id与remember_token需要一个   |
+| remember_token    |   string | 登录之后获得的token,nosign_id与remember_token需要一个   |
 | quantity    |   number |  修改后的商品数量  |
 
 **Response**
 
 修改成功
-```
-Status: 200 OK
+
+    Status: 200 OK
+
+```json
+{"code":"success"}
 ```
 修改失败
 ```
@@ -94,6 +112,7 @@ Status: 403  forbidden
 ```json
 {
   "id": "forbidden",
+  "code":"success",
   "message": "Please modify your car!"
 }
 ```
@@ -103,19 +122,29 @@ Status: 403  forbidden
 
     Delele /Cars/:id
 
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| nosign_id    |  string | 没有登录的标记id,nosign_id与remember_token需要一个   |
+| remember_token    |   string | 登录之后获得的token,nosign_id与remember_token需要一个   |
+
 **Response**
 
 删除成功
 
     Status: 200 OK
     
+```json
+{"code":"success"}
+```
 删除失败    
 ```
 Status: 403  forbidden
 ```
 ```json
 {
-  "id": "forbidden",
+  "code":"failure",
   "message": "Please delete your car!"
 }
 ```
@@ -235,7 +264,7 @@ Status: 403  forbidden
 
 | Name      |     Type |   Description   |
 | :-------- | --------:| :------: |
-| name    |   string |  中文可能需要用js进行处理,待测试  |
+| name    |   string |  查询内容  |
 
 **Response**
 
@@ -341,4 +370,103 @@ e.g: name=车
     }
   ]
 }
+```
+### User
+#### 1.登录
+传入email和密码，返回一个remember_token用于有权限的操作
+
+    Post /signin
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| email    |   string |  用户邮箱  |
+| password    |   string |  用户密码  |
+
+**Response**
+登录成功
+```json
+{
+  "code": "success",
+  "user_id": 1,
+  "remember_token": "2vmqmULPTxyLZGGO3JGFZQ"
+}
+```
+登录失败
+```json
+{"code":"failure"}
+```
+
+#### 2.注册
+每项必填
+
+    Post /users
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| email    |   string |  用户邮箱  |
+| password    |   string |  用户密码  |
+| password_confirmation    |   string |  密码确认  |
+| name    |   string |  姓名  |
+| province    |   string |  省份  |
+| city    |   string |  城市  |
+| address    |   string |  详细地址  |
+| phone    |   number |  电话  |
+
+**Response**
+成功
+```json
+{
+  "code": "success",
+  "user_id": 3,
+  "remember_token": "Cdvy8RKqExxDf0jsFfNkGw"
+}
+```
+失败,返回错误
+```json
+{
+  "code": "failure",
+  "errors": {
+    "email": [
+      "has already been taken"
+    ]
+  }
+}
+```
+
+#### 3.收藏or取消收藏
+收藏店铺
+
+    Get /users/:id/collect or /users/:id/uncollect
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| store_id    |   number |  店铺id  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+#### 4.关注or取消关注
+关注商品
+
+    Get /users/:id/follow or /users/:id/unfollow
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| product_id    |   number |  商品id  |
+
+**Response**
+```json
+{"code":"success"}
 ```
