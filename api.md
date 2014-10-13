@@ -1,4 +1,5 @@
 ### 目录
+#### 前端
   * [后台地址](#address)
   * [店铺主页](#store)
   * [购物车](#shopcar)
@@ -6,7 +7,13 @@
   * [类别商品](#category)
   * [搜索](#search)
   * [用户](#user)
- 
+
+####后端
+  * [后台登录](#signin)
+  * [商品操作](#operation)
+  * [修改店铺信息](#storeinformation)
+  * [分类操作](#operate categories)
+
 ###Address
   http://shop-api.herokuapp.com
 
@@ -465,6 +472,262 @@ e.g: name=车
 | :-------- | --------:| :------: |
 | remember_token    |   string |  登录之后获得的认证  |
 | product_id    |   number |  商品id  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+
+### 后端API
+
+### Signin
+#### 1.后台登录
+传入email和密码，返回一个remember_token用于有权限的操作
+
+    Post /admin/signin
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| email    |   string |  用户邮箱  |
+| password    |   string |  用户密码  |
+
+**Response**
+登录成功
+```json
+{
+  "code": "success",
+  "owner_id": 1,
+  "remember_token": "2vmqmULPTxyLZGGO3JGFZQ"
+}
+```
+登录失败
+```json
+{"code":"failure"}
+```
+
+### Operation
+#### 1.下架商品
+将商品下架，并不是删除
+
+    Get /admin/products/:id/drop_product
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+
+**Response**
+```json
+{"code":"success"}
+```
+#### 2.将下架的商品上架
+重新上架
+
+    Get /admin/products/:id/pick_product
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+
+**Response**
+```json
+{"code":"success"}
+```
+#### 3.查看下架的商品
+列出所有下架的商品，属性包括商品名称，图片等
+
+    Get /admin/products/show_down_products
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+
+**Response**
+```json
+[
+  {
+    "id": 1,
+    "name": "车-2",
+    "category_id": 1,
+    "picture_url": "/public/my/upload/directory/s1.jpg",
+    "price": 10000.0,
+    "quantity": 10
+  },
+  {
+    "id": 2,
+    "name": "车-2",
+    "category_id": 1,
+    "picture_url": "/public/my/upload/directory/s1.jpg",
+    "price": 20000.0,
+    "quantity": 20
+  }
+]
+```
+#### 4.查看上架的商品
+分页列出所有上架的商品，属性包括商品名称，图片等
+
+    Get /admin/products/show_up_products
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| page    |   number |  每页10个 从1开始  |
+
+**Response**
+```json
+[
+  {
+    "id": 14,
+    "name": "车-23",
+    "category_id": 2,
+    "picture_url": "/public/my/upload/directory/s2.jpg",
+    "price": 30000.0,
+    "quantity": 30
+  },
+  {
+    "id": 17,
+    "name": "车-26",
+    "category_id": 2,
+    "picture_url": "/public/my/upload/directory/s2.jpg",
+    "price": 60000.0,
+    "quantity": 60
+  },
+  {
+    "id": 18,
+    "name": "车-27",
+    "category_id": 2,
+    "picture_url": "/public/my/upload/directory/s2.jpg",
+    "price": 70000.0,
+    "quantity": 70
+  },
+ 
+  {
+    "id": 22,
+    "name": "车-31",
+    "category_id": 2,
+    "picture_url": "/public/my/upload/directory/s2.jpg",
+    "price": 110000.0,
+    "quantity": 110
+  },
+  {
+    "id": 23,
+    "name": "车-41",
+    "category_id": 3,
+    "picture_url": "/public/my/upload/directory/s3.jpg",
+    "price": 10000.0,
+    "quantity": 10
+  },
+  {
+    "id": 24,
+    "name": "车-42",
+    "category_id": 3,
+    "picture_url": "/public/my/upload/directory/s3.jpg",
+    "price": 20000.0,
+    "quantity": 20
+  }
+]
+```
+#### 5.删除下架的商品
+删除商品的所有信息，包括各种规格
+
+    Delete /admin/products/:id
+
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+### Storeinformation
+#### 1.修改店铺信息
+修改店铺名称，标语，背景等
+
+    Put /admin/stores/:id
+  
+ **Input** 
+ 
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| name    |   string |   名称  |
+| slogan    |   string |  标语  |
+| background    |   string |  背景图片  |
+
+**Response**
+```json
+{"code":"success"}
+```
+### Operate categories
+#### 1.展示所有分类
+
+    Get /admin/categories
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+
+**Response**
+```json
+[
+  {
+    "id": 1,
+    "name": "奔驰"
+  },
+  {
+    "id": 2,
+    "name": "法拉利"
+  },
+  {
+    "id": 3,
+    "name": "奥迪"
+  }
+]
+```
+#### 2.添加分类
+
+    Post /admin/categories
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| name    |   string | 类别名称  |
+
+**Response**
+```json
+{
+  "code": "success",
+  "category_id": 4
+}
+```
+#### 3,修改分类名称
+
+    Put /admin/categories/:id
+  
+ **Input** 
+ 
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| name    |   string |   名称  |
 
 **Response**
 ```json
