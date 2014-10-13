@@ -483,7 +483,7 @@ e.g: name=车
 
 ### Signin
 #### 1.后台登录
-传入email和密码，返回一个remember_token用于有权限的操作
+传入email和密码，返回一个remember_token用于有权限的操作,样品数据-email:110@qq.com password:123456
 
     Post /admin/signin
 
