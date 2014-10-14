@@ -652,6 +652,71 @@ e.g: name=车
 ```json
 {"code":"success"}
 ```
+#### 6.上架商品
+分3次上传
+1.
+    Post /admin/products
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| name    |   string |  名称  |
+| category_id    |   number |  类别id  |
+| picture    |   string |  商品主图  |
+| property    |   string |  商品属性json格式的字符串，例子如下  |
+| skucate    |   string |  商品规格json格式的字符串，例子如下  |
+
+**e.g.**
+property-[{"name":"车重","value":"3t"},{"name":"类型","value":"越野"},{"name":"车高","value":"0.5m"}]
+skucate-[{"name1":"大小","value1":"1","name2":"颜色","value2":"红","price":3000,"quantity":30},{"name1":"大小","value1":"2","name2":"颜色","value2":"蓝","price":4000,"quantity":48}]
+
+**Response**
+```json
+{
+  "code": "success",
+  "product_id": 4
+}
+```
+2.上传轮播图片
+
+    Post /admin/imglists
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| img    |   string |  轮播图片  |
+| product_id    |   number |  第一次上传返回得到的id  |
+
+**Response**
+```json
+{
+  "code": "success"
+}
+```
+3.上传详细介绍
+
+    Post /admin/details
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| product_id    |   number |  第一次上传返回得到的id  |
+| img    |   string |  图片  |
+| text    |   string |  图片配套的文字  |
+
+**Response**
+```json
+{
+  "code": "success"
+}
+```
+
 
 ### Storeinformation
 #### 1.修改店铺信息
@@ -670,7 +735,9 @@ e.g: name=车
 
 **Response**
 ```json
-{"code":"success"}
+{
+  "code": "success"
+}
 ```
 ### Operate categories
 #### 1.展示所有分类
