@@ -226,6 +226,39 @@ Status: 403  forbidden
   ]
 }
 ```
+#### 2.查看商品评论
+每页10个
+
+    Get /products/:product_id/comments
+
+
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| page    |  number |  页数  |
+
+**Response**
+```json
+[
+  {
+    "name": "土豪",
+    "content": "111111",
+    "time": "2014-10-16T08:49:48.485Z"
+  },
+  {
+    "name": "土豪",
+    "content": "666666",
+    "time": "2014-10-16T08:49:59.264Z"
+  },
+  {
+    "name": "土豪",
+    "content": "好好好好好好",
+    "time": "2014-10-16T08:50:12.920Z"
+  }
+]
+```
+
 ### Catogory
 #### 1.所属列别的商品
 每次发送10个商品
@@ -478,6 +511,96 @@ e.g: name=车
 {"code":"success"}
 ```
 
+#### 5.创建一个nosign_id
+
+    Get /nosign_id
+
+**Response**
+```json
+{"nosign_id":"ed511474f010c6f2dfb5"}
+```
+
+#### 6.查看收藏店铺
+
+    Get /users/:id/collecting
+
+**Paramters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+
+**Response**
+```json
+[
+  {
+    "id": 1,
+    "name": "专属",
+    "slogan": "这是一个标语."
+  }
+]
+```
+
+#### 7.查看关注的商品
+
+    Get /users/:id/following
+
+**Paramters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+
+**Response**
+```json
+[
+  {
+    "id": 1,
+    "name": "车-2",
+    "price": 10000.0,
+    "pictture": {
+      "main_img": {
+        "url": "/public/upload/s1.jpg"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "车-2",
+    "price": 20000.0,
+    "pictture": {
+      "main_img": {
+        "url": "/public/upload/s1.jpg"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": "车-3",
+    "price": 30000.0,
+    "pictture": {
+      "main_img": {
+        "url": "/public/upload/s1.jpg"
+      }
+    }
+  }
+]
+```
+#### 8.评论商品
+
+    Post /products/:product_id/comments
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| content    |   string |  评论内容，字数范围6-50  |
+
+**Response**
+```json
+{"code":"success"}
+```
 
 ### 后端API
 
