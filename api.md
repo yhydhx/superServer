@@ -263,7 +263,7 @@ Status: 403  forbidden
 #### 1.所属列别的商品
 每次发送10个商品
 
-    Get /Categories/:id
+    Get /categories/:id
     
 **Parameters**
 
@@ -423,6 +423,7 @@ e.g: name=车
 | :-------- | --------:| :------: |
 | email    |   string |  用户邮箱  |
 | password    |   string |  用户密码  |
+| nosign_id    |   string |  可选，未登录前获得的nosign_id，可以将购物车的东西转移过来  |
 
 **Response**
 登录成功
@@ -765,7 +766,7 @@ e.g: name=车
 
     Delete /admin/products/:id
 
-**Parameters**
+**Input**
 
 | Name      |     Type |   Description   |
 | :-------- | --------:| :------: |
