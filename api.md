@@ -10,9 +10,11 @@
 
 ####后端
   * [后台登录](#signin)
-  * [商品操作](#operation)
+  * [商品上下架操作](#operation)
   * [修改店铺信息](#storeinformation)
   * [分类操作](#operate categories)
+  * [商品更新操作](#update)
+  * [商品属性，规格，轮播，介绍的创建](#create)
 
 ###Address
   http://shop-api.herokuapp.com
@@ -923,4 +925,179 @@ skucate-[{"name1":"大小","value1":"1","name2":"颜色","value2":"红","price":
 **Response**
 ```json
 {"code":"success"}
+```
+
+###  Update
+#### 1.更新商品基本介绍
+基本介绍：名称，主图，所属类别
+
+    Put /admin/products/:id
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| name    |   string |   名称  |
+| category_id    |   number |   名称  |
+| main_img    |   string |   商品主图片  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+#### 2.更新商品的轮播图片
+
+    Put /admin/products/:product_id/imglists/:id
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| img    |   string |   图片  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+#### 3.更新商品详细介绍
+
+    Put /admin/products/:product_id/details/:id
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| text    |   string |   文字介绍  |
+| img    |   number |   图片  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+#### 4.更新商品属性
+
+    Put /admin/products/:product_id/properties/:id
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| name    |   string |   属性名称  |
+| value    |   string |   属性值  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+#### 5.更新商品规格
+
+    Put /admin/products/:product_id/skucates/:id
+
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| price    |   number |   价格  |
+| quantity    |   number |   库存  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+#### 6.更新商品轮播图片的顺序
+
+    Put /admin/products/:product_id/imglists/update_order
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| order    |   string |   轮播图片的顺序，e.g. "1,3,4,2,5",数字为图片id  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
+### Create
+#### 1.创建新的轮播图片
+
+    Post /admin/products/:product_id/imglists
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| img    |   string |   图片  |
+
+**Response**
+```json
+{"code":"success","imglist_id":3}
+```
+
+#### 2.创建新的商品属性
+
+    Post /admin/products/:product_id/properties
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| name    |   string |   属性名称  |
+| value    |   string |   属性值  |
+
+**Response**
+```json
+{"code":"success","property_id":3}
+```
+
+#### 3.创建新的商品规格
+
+    Post /admin/products/:product_id/skucates
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| name1    |   string |   规格一名称  |
+| value1    |   string |   规格一值  |
+| name2    |   string |   规格二名称  |
+| value2    |   string |   规格二值  |
+| price    |   number |   价格  |
+| quantity    |   number |   库存  |
+
+**Response**
+```json
+{"code":"success","skucate_id":3}
+```
+
+#### 4.创建新的商品详细介绍
+
+    Post /admin/products/:product_id/details
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| text    |   string |   文字介绍  |
+| img    |   number |   图片  |
+
+**Response**
+```json
+{"code":"success","detail_id":3}
 ```
