@@ -788,7 +788,7 @@ e.g: name=车
 | remember_token    |   string |  登录之后获得的认证  |
 | name    |   string |  名称  |
 | category_id    |   number |  类别id  |
-| picture    |   string |  商品主图  |
+| main_img    |   string |  商品主图  |
 | property    |   string |  商品属性json格式的字符串，例子如下  |
 | skucate    |   string |  商品规格json格式的字符串，例子如下  |
 
