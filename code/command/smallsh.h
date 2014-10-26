@@ -9,12 +9,25 @@
 #define FOREGROUND 0
 #define BACKGROUND 1
 
+static char special[] = {' ','\t','*',';','\n','\0'};
+inarg(char c){
+	char *wrk;
+	for(wrk=special;*wrk!='\0'; wrk++){
+		if(c == *wrk){
+			return(0);
+		}
+	}
+
+	return(1);
+}
+
 gettok(char* output){
 	int type;
+	printf("hello");	
 	
-	outptr = tok;
+	output	 = tok;
 	//first delete the blank char
-	for(; *ptr == '' || *ptr=='\t';ptr++);
+	for(; *ptr == ' ' || *ptr=='\t';ptr++);
 	
 	*tok++=*ptr;
 	switch(*ptr++){
@@ -33,6 +46,9 @@ gettok(char* output){
 				*tok++=*ptr++;
 	}
 	*tok++ = '\0';
+	printf("%s\n",output );
 	return(type);
 	}
 }
+
+

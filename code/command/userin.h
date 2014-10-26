@@ -18,6 +18,7 @@ int userin(char* p ){
 		if(count<MAXBUF)
 			inpbuf[count++] = c;
 		if(c =='\n' && count<MAXBUF){
+			printf("a  line has end");
 			inpbuf[count] = '\0';
 			return(count);
 		}
