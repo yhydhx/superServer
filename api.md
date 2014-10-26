@@ -15,6 +15,7 @@
   * [分类操作](#operate categories)
   * [商品更新操作](#update)
   * [商品属性，规格，轮播，介绍的创建](#create)
+  * [评论回复](#reply)
 
 ###Address
   http://shop-api.herokuapp.com
@@ -605,6 +606,21 @@ e.g: name=车
 {"code":"success"}
 ```
 
+#### 9.删除评论
+
+    Delete /products/:product_id/comments/:id
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+
+**Response**
+```json
+{"code":"success"}
+```
+
 ### 后端API
 
 ### Signin
@@ -1100,4 +1116,37 @@ skucate-[{"name1":"大小","value1":"1","name2":"颜色","value2":"红","price":
 **Response**
 ```json
 {"code":"success","detail_id":3}
+```
+
+
+### Reply
+#### 1.评论回复
+
+    Post /admin/replies
+    
+**Input**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| comment_id    |   number |  要回复评论的id  |
+| content    |   string |  回复内容  |
+
+**Response**
+```json
+{"code":"success","reply_id":3}
+```
+
+#### 2.删除回复
+
+    Delete /admin/replies/:id
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string |  登录之后获得的认证  |
+| reply_id    |   number |  要删除的回复id  |
+
+**Response**
+```json
+{"code":"success"}
 ```
