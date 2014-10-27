@@ -1,0 +1,10 @@
+Learn protect process
+In the os,we need create some special process which run at the background. Thus they would not be interuped by terminal.
+
+when the back-process wanna show any process. It would send the message to the syslog() instead of the std out. We should check the message in the log of the system.
+
+1.create process
+ we should create a process and kill the parent one. We should ignore the sighup singal and fork a new process. Then we should change the work direction to make sure we could open the process wherever we are.After that , close all file handles to avoid comflict.Finally , open log system.
+
+2. signal
+  signal has two parameters. The first one is the type of the signal. The second one is the handler. The handler can be the address of a function which return a number.If the handler is SIG_IGN, it means we should ignore the signal. Or the handler is SIG_DFL , it means recover the default operation of the signal.
