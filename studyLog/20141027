@@ -8,3 +8,11 @@ when the back-process wanna show any process. It would send the message to the s
 
 2. signal
   signal has two parameters. The first one is the type of the signal. The second one is the handler. The handler can be the address of a function which return a number.If the handler is SIG_IGN, it means we should ignore the signal. Or the handler is SIG_DFL , it means recover the default operation of the signal.
+
+3. use alarm and pause
+see test3.c 
+The main function of the program is that we enter the time we need to wait and the string we'd like to show.
+In this test. we use the signal(SIGALRM,setflag) and the setflag() function.
+
+4.pipe know how to use pipe 
+
