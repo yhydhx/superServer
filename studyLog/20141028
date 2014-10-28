@@ -1,4 +1,6 @@
-today's task : read material about pipe
+today's task : read material about pipe, named pipe, and lock 
+Tomorrow's task : info sequence
+
 
 1.first problem 
 linux net code p77 I wanna impliment the function to test7.c.
@@ -8,6 +10,19 @@ Let me check it.
 
 Em, I think it's my fault. The second parameter should be a command instead of a file......... The correct use: ./7.out more test7.c
 
+2. named pipe
+ let's see the two files  test8.c  test9.c
+ test8.c is the server  test9.c is the client.
+test9.c send the data to the test8.c
+It's pretty cool~
 
+3. second problem  It's about the test 10.c
+The test10.c has two essential fucntions : lseek() and sscanf()
+I'm quite confuse about the line "if(!(n=sscanf(buff,"%d\n",&seqno)))"
+and always get wrong answer. Then I find that we should write a number in the file "data". What a stupid guy.....
 
+4. third problem 
+   When I finish the problem in the page 83.. I got a totally different result from the book. I'm quite confuse. Then I find that no matter how I start the process. It's pid always the same. even if I start as ./test10.out &&./test10.out. I still find there is only one task work........ I didn't solve it ..
 
+5. about the lock
+   We have several method to lock the process. We just need to complete the two functions  my_lock(int fd)  and my_unlock(int fd)

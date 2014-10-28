@@ -1,12 +1,10 @@
-#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
 
-extern char** environ;
+uid_t uid,euid;
+gid_t gid,egid;
 
-main(){
-	char *argv[] = {"showenv",NULL}, *envp[] = {"foo=var", "var=foo",NULL};
-	execve("./showenv",argv,envp);
-	perror("exeve failed");
-	return;
-}
-
-
+uid = getuid();
+euid = geteuid();
+gid = getgid();
+egid = getegid();
