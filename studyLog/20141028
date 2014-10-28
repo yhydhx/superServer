@@ -1,0 +1,13 @@
+today's task : read material about pipe
+
+1.first problem 
+linux net code p77 I wanna impliment the function to test7.c.
+but i failed
+The problem is I can't see anything in the output file.
+Let me check it.
+
+Em, I think it's my fault. The second parameter should be a command instead of a file......... The correct use: ./7.out more test7.c
+
+
+
+
