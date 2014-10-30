@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
+#include <linux/sem.h>
 
 #define SEM_RESOURCE_MAX 1 //Initial value of all semaphores
 
@@ -63,7 +64,7 @@ int main(int argc, char *argv[]){
 	}
 	return(0);
 }
-
+                    
 void opensem(int *sid, key_t key){
 	//open the semaphore set -- do not create !!!
 	
