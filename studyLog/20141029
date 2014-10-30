@@ -1,0 +1,10 @@
+today's task is the message sequence, sem
+
+1. about the message 
+ rewrite the msgtool, know how to send ,receive, delete and change the messag.
+The basic funtion is the msgrcv()., msgctl(), msgsnd(). This book still tell me how to encapsulation those funtion.
+
+2. about the semaphores
+   Learn about the struct: sem semum sembuf semid_qs
+   rewrite the semtool. Realize the sem
+

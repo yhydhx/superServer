@@ -1,11 +1,14 @@
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/errno.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
 
+
 #define SEQFILE "./swquo"
 #define MAXBUF 100
+#define LOCKFILE "seqno.lock" 
 
 main(){
 	int fd, i, n, pid, seqno;
@@ -47,9 +50,33 @@ main(){
 
 
 my_lock(int fd){
-	return;
+	int temfd;
+	char tempfile[30];
+
+	sprintf(tempfile,"LCK %d", getpid());
+	//establish a tmp file and close it;
+	if((temfd = creat(tempfile,0444)) < 0){
+		perror("can't creat temp file");
+		exit(1);
+	}
+	close(temfd);
+	/* now try use lock-file make the link to the temp file. Then test the sock-file*/
+	while(link(tempfile, LOCKFILE) < 0){ 
+		if(errno !=  EEXIST){
+			perror("link error");
+			exit(1);
+		}
+		sleep(1);
+	}
+	if(unlink(tempfile) <0){
+		perror("unlink error");
+		exit(1);
+	}
 }
 
 my_unlock(int fd){
-	return;
+	if(unlink(LOCKFILE) < 0){
+		perror("unlink error");
+		exit(1);
+	}
 }
