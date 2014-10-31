@@ -7,6 +7,7 @@
   * [类别商品](#category)
   * [搜索](#search)
   * [用户](#user)
+  * [消息提醒](#message)
 
 ####后端
   * [后台登录](#signin)
@@ -619,6 +620,69 @@ e.g: name=车
 **Response**
 ```json
 {"code":"success"}
+```
+
+### Message
+#### 1.返回用户消息提醒
+
+    Get /messages
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string | 登录之后获得的token |
+| page    |  number |  页数  |
+
+**Response**
+返回值说明：
+code：
+1-店铺推出新品，新品名称product_name
+2-关注商品下架
+3-关注商品降价
+4-店家回复用户评论消息
+
+```json
+[
+  {
+    "id": 8,
+    "code": 4,
+    "product_id": 1,
+    "product_name": "xxx",
+    "reply_id": 2,
+    "content": "woqu"
+  },
+  {
+    "id": 7,
+    "code": 2,
+    "product_id": 1,
+    "product_name": "xxx"
+  },
+  {
+    "id": 6,
+    "code": 1,
+    "store_id": 1,
+    "store_name": "专属",
+    "product_id": 23,
+    "product_name": "aa"
+  }
+]
+```
+
+#### 2.查询未读消息
+返回未读的消息个数
+
+    Get /messages/unreadmessages
+    
+**Parameters**
+
+| Name      |     Type |   Description   |
+| :-------- | --------:| :------: |
+| remember_token    |   string | 登录之后获得的token |
+
+**Response**
+```json
+{"number":1}
 ```
 
 ### 后端API
