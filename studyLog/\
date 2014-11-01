@@ -10,4 +10,4 @@ The basic funtion is the msgrcv()., msgctl(), msgsnd(). This book still tell me 
    I find it is so difficult to debug. redifine the struct and don't know the storage of ...
    Finally I find it's the header's fault .
    when I note the two headers :ipc.h and sem.h  and add new header file : linux/sem.h I got the correct answer.
-   But there still have several bugs when I try to lock the sem or unlock the sem and change mode
+   But there still have several bugs when I try to lock the sem or unlock the sem

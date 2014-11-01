@@ -2,8 +2,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <sys/ipc.h>
-#include <sys/sem.h>
+//#include <sys/ipc.h>
+//#include <sys/sem.h>
 #include <linux/sem.h>
 
 #define SEM_RESOURCE_MAX 1 //Initial value of all semaphores
@@ -118,7 +118,7 @@ void locksem(int sid, int member){
 		fprintf(stderr, "Lock failed\n");
 		exit(1);
 	}else{
-		pritnf("Semaphore resources decremented by one (locked)\n");
+		printf("Semaphore resources decremented by one (locked)\n");
 	}
 
 	dispval(sid, member);
@@ -205,7 +205,7 @@ void dispval(int sid, int member){
 	int semval;
 
 	semval = semctl(sid, member, GETVAL, 0);
-	pritnf("semval for memver %d is %d\n", member, semval);
+	printf("semval for memver %d is %d\n", member, semval);
 }
 
 void usage(void){

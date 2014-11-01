@@ -1,0 +1,8 @@
+Today's task Know the shared memory
+
+task1:shmcopy
+	bug1, share_ex.h  line9 shmkey1
+	bug2, the line"buf2->d_nread() is not OK"
+	Can't finish the function ... bugs everywhere 
+	In the future find a oppotunity to solve the bugs here.
+

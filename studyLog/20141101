@@ -1,0 +1,4 @@
+Today's task fix the server and the client's bug
+The stringserver and the stringclient
+	completed, but the problem is function inet_ntoa().HHHH, I got it 
+with searching the stackoverflow, I know I should include the header file :<arpa/inet.h>. It's quite amazing thing. I feel so happy

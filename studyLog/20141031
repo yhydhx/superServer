@@ -1,0 +1,8 @@
+Today's task: finish the protocol and know the socket
+   1.protocol: Know the XNS , SNA, TCP/IP protocal
+	XNS:	SPP, PEP, RIP
+	TCP/IP:  ARP ICMP IP protocol
+
+   2. DNS. when I the finish the program, I found that we can get the host name . But when turn to the ip address  
+   
+  3. write simple server 
