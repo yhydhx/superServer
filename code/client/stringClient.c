@@ -6,10 +6,10 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-
+#include <time.h>
 //define the port we listen
 #define PORT 4000
-
+#define  UNIXEPOCH 2208988800UL
 //the max size we need to receive
 #define MAXDATASIZE 100
 
@@ -49,9 +49,13 @@ int main(int argc, char * argv[]){
 		perror("recv");
 		exit(1);
 	}
-	printf("%d \n", numbytes);
+	//printf("%d \n", numbytes);
 	buf[numbytes] = "\0";
-	printf("Receive: %s\n", buf);
+	time_t now;
+	(void) time(&now);
+	now = htonl((unsigned long)(now + UNIXEPOCH));
+	printf(" %s\n",ctime(&now));
+	//printf("Receive: %s\n", buf);
 	close(socket);
 	return 0;
 }

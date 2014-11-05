@@ -9,24 +9,9 @@
 #include <arpa/inet.h>
 #include <fcntl.h>
 
-#define MYPORT 4000
-
-#define BACKLOG 10
-
-void sig_urg(int signo);
-
-main(){
+                                                                                                                                                   
 	//fix the bug: old_sig_urg_handle didn't define
-	void * old_sig_urg_handle;
-	//listen on sock_fd, receive on new_fd
-	int sockfd, new_fd;
-	struct sockaddr_in my_addr;
-
-	struct sockaddr_in their_addr;
-
-	int sin_size;
-	int n;
-	char buff[100];
+                  
 	//check the error
 	if ((sockfd = socket (AF_INET, SOCK_STREAM, 0 )) == -1){
 		perror("socket");
@@ -87,4 +72,4 @@ void sig_urg(int signo){
 	n = recv(new_fd, buff, sizeof(buff)-1, MSG_OOB);
 	buff[n] = 0;
 	printf("recv %d OOB byte: %s\n", n, buff);
-}
+}                                                                                                                                                 
