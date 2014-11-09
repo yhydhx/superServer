@@ -44,17 +44,25 @@ int main(int argc, char * argv[]){
 		perror("connect");
 		exit(1);
 	}
-
+	char * sendData = "serverV1.c";
+			if(send(new_fd, sendData, strlen(sendData),0) == -1){
+				//gave the error report and close the connection when error appears
+				perror("send");
+				close(new_fd);
+				exit(0);
+			}else{
+				//printf("sending the data :  %s; and the lenth of the data is %d \n", sendData, sizeof(sendData));
+			}
+			
+			
 	if ((numbytes = recv(sockfd, buf, MAXDATASIZE,0)) == -1){
 		perror("recv");
 		exit(1);
 	}
-	//printf("%d \n", numbytes);
+	printf("%d \n", numbytes);
 	buf[numbytes] = "\0";
-	time_t now;
-	(void) time(&now);
-	now = htonl((unsigned long)(now + UNIXEPOCH));
-	printf(" %s\n",ctime(&now));
+	
+	 printf(" %s\n",ctime(&now));
 	//printf("Receive: %s\n", buf);
 	close(socket);
 	return 0;

@@ -1,0 +1,7 @@
+Today's task : complete the file trans~
+
+rewrite teh serverV1 and clientV1
+protocol:
+1. send the file size
+2. send a part of the file
+3. end
