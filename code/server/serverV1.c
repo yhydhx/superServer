@@ -29,7 +29,7 @@ int main(int argc, char **argv){
     off_t offset = 0;          /* file offset */
     char filename[PATH_MAX];   /* filename to send */
     int rc;                    /* holds return code of system calls */
-
+    char fileSize[24];  //RECORD THE SIZE OF BUFFER
     /* check command line arguments, handling an optional port number */
     if (argc == 2) {
         port =    atoi(argv[1]);

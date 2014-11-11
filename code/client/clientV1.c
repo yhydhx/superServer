@@ -64,20 +64,20 @@ int main(int argc, char * argv[]){
             perror("recv");
             exit(1);
     }
-
 */
 
 
 
+
     while ((numbytes = recv(sockfd, buf, MAXDATASIZE,0)) ){
-        if (wholebyte <= 0){
+        if (numbytes <= 0){
             perror("recv failed");
             close(sockfd);
             exit(0);
         }else{
-            wholebyte -= numbytes;
+          
             printf("%d \n", numbytes);
-            buf[numbytes] = "\0";
+            buf[numbytes] = '\0';
             
             //printf(" %s\n",ctime(&now));
             printf("Receive: %s\n", buf);   
