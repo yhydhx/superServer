@@ -18,9 +18,11 @@ int main(int argc, char * argv[]){
     int wholebyte;    //the whole file bytes
     int sesc;   //the server socket
     char buf[MAXDATASIZE];
-
+    int createFileFlag = 0; 
     struct hostent *he;
     struct sockaddr_in their_addr;
+    FILE *fp;
+
 
     if(argc != 2){
         fprintf(stderr, "usage:client hostname\n");
@@ -69,15 +71,27 @@ int main(int argc, char * argv[]){
 
 
 
+
     while ((numbytes = recv(sockfd, buf, MAXDATASIZE,0)) ){
         if (numbytes <= 0){
             perror("recv failed");
             close(sockfd);
             exit(0);
         }else{
-          
-            printf("%d \n", numbytes);
             buf[numbytes] = '\0';
+            if(createFileFlag == 0){
+                   fp = fopen("./test.txt", "w+");
+                   //fprintf(fp, buf);
+                   fputs(buf, fp);
+                   fclose(fp);
+                   createFileFlag = 1;
+            }else{
+                   fp = fopen("./test.txt", "a");
+                   //fprintf(fp, buf);
+                   fputs(buf, fp);
+                   fclose(fp);
+            }
+            printf("%d \n", numbytes);
             
             /*write the bytes to the file*/
             
