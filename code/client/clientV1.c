@@ -79,6 +79,8 @@ int main(int argc, char * argv[]){
             printf("%d \n", numbytes);
             buf[numbytes] = '\0';
             
+            /*write the bytes to the file*/
+            
             //printf(" %s\n",ctime(&now));
             printf("Receive: %s\n", buf);   
         }
