@@ -11,7 +11,7 @@
 #define PORT 1234
 #define  UNIXEPOCH 2208988800UL
 //the max size we need to receive
-#define MAXDATASIZE 1024
+#define MAXDATASIZE 1024        
 
 int main(int argc, char * argv[]){
     int sockfd, numbytes;
@@ -49,7 +49,7 @@ int main(int argc, char * argv[]){
         exit(1);
     }
 
-    char * sendData = "serverV1.c";
+    char * sendData = "serverV1.c dhx";
     if(send(sockfd, sendData, strlen(sendData),0) == -1){
                 //gave the error report and close the connection when error appears
                 perror("send");
