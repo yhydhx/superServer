@@ -38,7 +38,7 @@
   	char fileSize[24];		//record the size of buffer;
   	char* username =  NULL;		//record the username
   	char* password = NULL;		//record the password
-  	char sendData[128];		//send the message to the client
+  	char* sendData;		//send the message to the client
 
   	/***********************************************
 		check the command line aruguments.                *
