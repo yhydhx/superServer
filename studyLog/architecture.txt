@@ -1,0 +1,27 @@
+Folder_TREE
+Header=Folder_TREE,Name=ROOT,Path=,File=[FID*],Dir=[Folder_TREE.Name]
+# As Root of Folder_TREE
+Header=Folder_TREE,Name=,Path=,File=[FID*],Dir=[ Folder_TREE.Name]
+# As Dir of Folder_TREE
+
+SyncFile_State_LIST
+Header=SyncFile_State,Name=FID,OS_ID=FID,ShareFile_ID=,Mod_Record=,Synced_ID=,
+
+
+Update_Dscrp, To Client
+Header=UD,Name=NULL,Type=FT,Folder_TREE=ROOT
+# put Folder_TREE here
+Header=UD,Name=NULL,Type=CREATE,ShareFile_ID=,Synced_ID=,Client_Addr=,FileRes_OS_ID=,
+Header=UD,Name=NULL,Type=UPDATE,ShareFile_ID=,Synced_ID=,Client_Addr=,FileRes_OS_ID=,
+Header=UD,Name=NULL,Type=DELETE,ShareFile_ID=,OS_ID=,
+
+Update_Dscrp, To Server
+Header=UD,Name=NULL,Type=FT,Folder_TREE=ROOT
+Header=UD,Name=NULL,Type=CREATE,ShareFile_ID=-1,OS_ID=,Mod_Record=,
+Header=UD,Name=NULL,Type=UPDATE,ShareFile_ID=, OS_ID=,Mod_Record=,
+Header=UD,Name=NULL,Type=DELETE,ShareFile_ID=,OS_ID=,
+
+
+
+
+
